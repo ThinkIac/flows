@@ -1,0 +1,96 @@
+{
+  "name": "flows",
+  "version": "0.1.0",
+  "description": "Automação visual estilo n8n/Make para o runtime Lógos: escuta eventos do bus, dispara workflows e expõe webhooks.",
+  "main": "index.js",
+  "dependencies": {
+    "logos": "*"
+  },
+  "manifest": {
+    "iconPreset": { "pack": "lucide", "name": "Workflow" },
+    "canvasDocument": {
+      "version": 2,
+      "label": "Flows",
+      "description": "Editor de automações no canvas compartilhado",
+      "create": {
+        "path": "/flows/workflows",
+        "method": "POST",
+        "response": "workflow"
+      },
+      "icon": "/flows/icon.svg",
+      "surface": {
+        "id": "canvas",
+        "role": "canvas",
+        "label": "Fluxo",
+        "view": "FlowCanvas"
+      },
+      "panels": [
+        {
+          "id": "node-catalog",
+          "role": "nodeCatalog",
+          "label": "Adicionar nó",
+          "view": "NodeCatalog",
+          "uiPosition": {
+            "x": 14,
+            "y": 48
+          },
+          "size": {
+            "width": 232,
+            "height": 560
+          }
+        },
+        {
+          "id": "properties",
+          "role": "properties",
+          "label": "Propriedades",
+          "view": "NodeInspector",
+          "uiPosition": {
+            "x": 84,
+            "y": 48
+          },
+          "size": {
+            "width": 300,
+            "height": 560
+          }
+        },
+        {
+          "id": "trigger",
+          "role": "trigger",
+          "label": "Gatilho",
+          "view": "FlowTrigger",
+          "uiPosition": {
+            "x": 50,
+            "y": 18
+          },
+          "size": {
+            "width": 560,
+            "height": 180
+          }
+        },
+        {
+          "id": "controls",
+          "role": "controls",
+          "label": "Controles do Flow",
+          "view": "FlowControls",
+          "uiPosition": {
+            "x": 50,
+            "y": 90
+          },
+          "size": {
+            "width": 700,
+            "height": 120
+          }
+        }
+      ]
+    }
+  },
+  "runtime": {
+    "stability": {
+      "routes": [
+        "workflows"
+      ],
+      "maxRetries": 3,
+      "timeout": 15000
+    }
+  }
+}

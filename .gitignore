@@ -1,0 +1,4 @@
+data/
+generated/*
+!generated/.keep
+node_modules/
